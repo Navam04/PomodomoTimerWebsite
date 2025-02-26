@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Pomodoro Timer</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <main id="main-section">
+            <div id="main-card">
+                <div id="cardText">
+                    <h2 id="pomoText">Pomodoro</h2>
+                    <h4 id="statusText">Work</h4>
+                    <h1 id="timerText">25:00</h1>
+                </div>
+                <div id="progressbar">
+                    <div id="progress"></div>
+                </div>
+                <div id="buttons">
+                    <a id="play" aria-label="Play">
+                      <i data-lucide="play"></i>
+                    </a>
+                    <a id="reset" aria-label="Reset">
+                      <i data-lucide="rotate-cw"></i>
+                    </a>
+                    <a id="skip" aria-label="Skip">
+                      <i data-lucide="skip-forward"></i>
+                    </a>
+                  </div>                 
+                <div id="totPomos">
+                    <h4>Total Pomos: 5</h4>
+                </div>
+            </div>
+        </main> 
+        <script src="https://unpkg.com/lucide"></script> 
+        <script src="script.js" async defer></script>
+    </body>
+</html>
