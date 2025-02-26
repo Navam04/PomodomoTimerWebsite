@@ -68,15 +68,19 @@ main {
 }
 
 #buttons a {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 40px;
     height: 40px;
+    font-size: 20px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    border-radius: 2px;
+    border-radius: 50%;
     color: black;
-    border: black 1px solid;
+    border: rgba(0, 0, 0, 0.24) 1px solid;
+    cursor: pointer;
   }
 
 #buttons a:hover {
