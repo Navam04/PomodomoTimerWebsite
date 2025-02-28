@@ -18,6 +18,12 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
+        <header id="header">
+            <h1>Pomodoro Timer</h1>
+            <a id="statsBtn">Stats</a>
+            <a id="loginBtn">Login</a>
+        </header>
+
         <main id="main-section">
             <div id="main-card">
                 <div id="cardText">
@@ -40,10 +46,27 @@
                     </a>
                   </div>                 
                 <div id="totPomos">
-                    <h4>Total Pomos: 0</h4>
+                    <h4>Total Pomos Today: 0</h4>
                 </div>
             </div>
         </main> 
+
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+              <p>Login to keep your stats!</p>
+              <form id="loginForm">
+                <input type="text" id="username" placeholder="Username">
+                <input type="password" id="password" placeholder="Password">
+                <button id="login">Login</button>
+                <button id="signup">Sign Up</button>
+
+              </form>
+              <button id="closeModal">Close</button>
+            </div>
+          </div>
+
+
         <script src="https://unpkg.com/lucide"></script> 
         <script src="script.js" async defer></script>
     </body>

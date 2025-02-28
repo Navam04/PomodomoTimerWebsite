@@ -5,7 +5,14 @@ const playBtn   = document.getElementById("play");
 const resetBtn  = document.getElementById("reset");
 const skipBtn   = document.getElementById("skip");
 const progressBar = document.getElementById("progress");
-const totPomosText = document.querySelector("#totPomos h4");
+const totPomosText = document.getElementById("totPomos h4");
+const LoginBtn = document.getElementById("loginBtn");
+const StatsBtn = document.getElementById("statsBtn");
+const body = document.getElementById("body");
+const openModalBtn = document.getElementById('loginBtn');
+const closeModalBtn = document.getElementById('closeModal');
+const modal = document.getElementById('modal');
+const mainSection = document.getElementById('main-section');
 
 // Constants for durations (in seconds)
 const WORK_DURATION = 25 * 60;  // 25 minutes
@@ -17,6 +24,19 @@ let remainingTime = WORK_DURATION;
 let totalPomodoros = 0;
 let timerInterval = null;
 let isRunning = false;
+let isLoggedIn = false;
+
+function login() {
+  if (!isLoggedIn) {
+    isLoggedIn = true;
+    LoginBtn.textContent = "Logout";
+    StatsBtn.style.display = "block";
+  } else {
+    isLoggedIn = false;
+    LoginBtn.textContent = "Login";
+    StatsBtn.style.display = "block";
+  }
+}
 
 // Format seconds as mm:ss
 function formatTime(seconds) {
@@ -36,7 +56,16 @@ function updateDisplay() {
   const progressPercent = (elapsed / duration) * 100;
   progressBar.style.width = 100 - progressPercent + "%";
   
-  totPomosText.textContent = `Total Pomos: ${totalPomodoros}`;
+  totPomosText.textContent = `Total Pomos Today: ${totalPomodoros}`;
+}
+
+// Update the background color of the body based on current mode
+function updateBackground() {
+  if (currentMode === 'work') {
+    document.body.style.backgroundColor = "rgba(23, 180, 230, 0.219)"; // blue
+  } else {
+    document.body.style.backgroundColor = "rgba(23, 230, 150, 0.219)"; // similar tone green
+  }
 }
 
 // Start the timer
@@ -51,7 +80,7 @@ function startTimer() {
       }
     }, 1000);
     isRunning = true;
-    // Change the play button to a pause icon
+    // Change play button to pause icon
     playBtn.innerHTML = '<i class="fas fa-pause"></i>';
   }
 }
@@ -60,7 +89,7 @@ function startTimer() {
 function pauseTimer() {
   clearInterval(timerInterval);
   isRunning = false;
-  // Change the play button back to a play icon
+  // Change pause button back to play icon
   playBtn.innerHTML = '<i class="fas fa-play"></i>';
 }
 
@@ -96,6 +125,9 @@ function completeSession(isSkip = false) {
     remainingTime = WORK_DURATION;
   }
   
+  // Update body background based on new mode
+  updateBackground();
+  
   // Reset the play button to the play icon
   playBtn.innerHTML = '<i class="fas fa-play"></i>';
   updateDisplay();
@@ -107,6 +139,24 @@ playBtn.addEventListener("click", () => {
 });
 resetBtn.addEventListener("click", resetTimer);
 skipBtn.addEventListener("click", skipSession);
+LoginBtn.addEventListener("click", login);
 
-// Initialize the display on page load
+openModalBtn.addEventListener('click', () => {
+  modal.classList.add('active');
+  // Option 1: Add inert attribute if supported (with polyfill if needed)
+  mainSection.setAttribute('inert', '');
+  // Option 2: Or add a class that disables pointer events (as in our CSS above)
+  mainSection.classList.add('inert');
+});
+
+// Close modal: hide overlay and re-enable main content
+closeModalBtn.addEventListener('click', () => {
+  modal.classList.remove('active');
+  mainSection.removeAttribute('inert');
+  mainSection.classList.remove('inert');
+});
+
+
+// Initialize display and background on page load
+updateBackground();
 updateDisplay();
