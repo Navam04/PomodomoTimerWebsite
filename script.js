@@ -26,6 +26,31 @@ let timerInterval = null;
 let isRunning = false;
 let isLoggedIn = false;
 
+// Function to play silent audio in the background
+function keepPageActive() {
+  const audio = new Audio();
+  audio.src = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA="; 
+  audio.loop = true;
+  
+  // Try to play the audio
+  audio.play().then(() => {
+      console.log("Silent audio is playing to keep the timer active.");
+  }).catch(err => {
+      console.warn("User interaction required to start audio:", err);
+  });
+}
+
+// Call this function when the page loads
+document.addEventListener("DOMContentLoaded", () => {
+  keepPageActive();
+});
+
+// In case browsers block autoplay, prompt user to allow it
+document.addEventListener("click", () => {
+  keepPageActive();
+});
+
+
 function login() {
   if (!isLoggedIn) {
     isLoggedIn = true;
